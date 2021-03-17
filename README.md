@@ -1,6 +1,6 @@
 # Generating Persona Consistent Dialogues by Exploiting Natural Language Inference
 
-Source code for RCDG model from AAAI20 *Generating Persona Consistent Dialogues by Exploiting Natural Language Inference*.
+Source code for RCDG model in AAAI20 **Generating Persona Consistent Dialogues by Exploiting Natural Language Inference**, a natural language inference (NLI) enhanced reinforcement learning dialogue model.
 
 
 ## Requirements:
@@ -105,7 +105,7 @@ Epoch  5, d_step    41/ 4108; d: 0.55168
 ...
 ```
 
-### 4. Adversarial Reinforcement Training
+### 4. Reinforcement Training
 
 `cd ../reinforcement_train/`
 
@@ -115,17 +115,31 @@ python train.py -epochs 30 -batch_size 32 -d_learning_rate 1e-4 -g_learning_rate
 
 Remember to replace `PATH_TO_PRETRAINED_D ` with the `D Pretrain` model path.
 
-Note that all the `-epochs` are global among all stages,  if you want to tune this parameter. Actually, there are 30 - 20 = 10 training epochs in this Adversarial Reinforcement Training stage if the D Pretrain model was trained 20 epochs in total.
+Note that all the `-epochs` are global among all stages,  if you want to tune this parameter. Actually, there are 30 - 20 = 10 training epochs in this Reinforcement Training stage if the D Pretrain model was trained 20 epochs in total.
+
+```
+Loading train dataset from ../data/nli_persona.train.1.pt, number of examples: 131432
+Epoch  7, self_sample     1/ 4108; acc:   2.12; ppl:   0.28; 298 src tok/s; 234 tgt tok/s;      2 s elapsed
+Epoch  7, teacher_force    11/ 4108; acc:   3.32; ppl:   0.53; 2519 src tok/s; 2772 tgt tok/s;      3 s elapsed
+Epoch  7, d_step    21/ 4108; d: 0.98896
+Epoch  7, d_step    31/ 4108; d: 0.99906
+Epoch  7, self_sample    41/ 4108; acc:   0.00; ppl:   0.27; 1769 src tok/s; 260 tgt tok/s;      7 s elapsed
+Epoch  7, teacher_force    51/ 4108; acc:   2.83; ppl:   0.43; 2368 src tok/s; 2910 tgt tok/s;      9 s elapsed
+Epoch  7, d_step    61/ 4108; d: 0.75311
+Epoch  7, d_step    71/ 4108; d: 0.83919
+Epoch  7, self_sample    81/ 4108; acc:   6.20; ppl:   0.33; 1791 src tok/s; 232 tgt tok/s;     12 s elapsed
+...
+```
  
 
-###5. Testing Trained Model
+### 5. Testing Trained Model
 Now we have a trained dialogue model, we can test by:
 
 Still in `./reinforcement_train/`
 
 
 ```
-python predict.py -model  -src ../data/src-val.txt -tgt ../data/tgt-val.txt -replace_unk -verbose -output ./results.txt -per ../data/per-val.txt -nli nli-val.txt -gpu 0
+python predict.py -model TRAINED_MODEL_PATH  -src ../data/src-val.txt -tgt ../data/tgt-val.txt -replace_unk -verbose -output ./results.txt -per ../data/per-val.txt -nli nli-val.txt -gpu 0
 ```
 
 ## MISC
