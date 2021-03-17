@@ -143,7 +143,9 @@ python predict.py -model TRAINED_MODEL_PATH  -src ../data/src-val.txt -tgt ../da
 ```
 
 ## MISC
+
 * **Why the dependencies look so outdated?**	
+
 	The project was finished in early 2019, though just releasted. Due to the rapid updates of Pytorch and OpenNMT, running this project with their subsequent versions will cause unexpeted compatibility problems.
 	
 * **Initializing Model Seems Slow?**	
