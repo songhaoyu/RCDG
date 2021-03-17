@@ -36,7 +36,7 @@ python preprocess.py -train_src data/src-train.txt -train_tgt data/tgt-train.txt
 
 And as introduced in the paper, there are different training stages:
 
-###1. NLI model Pretrain
+### 1. NLI model Pretrain
 
 `cd NLI_pretrain/`
 
@@ -59,7 +59,7 @@ Epoch  1, nli_step    61/ 4108; nli: 0.49062
 ...
 ```
 
-###2. Generator G Pretrain
+### 2. Generator G Pretrain
 
 `cd ../G_pretrain/`
 
@@ -84,7 +84,7 @@ Epoch  4, teacher_force   971/ 4108; acc:  24.33; ppl:  97.14; 5614 src tok/s; 6
 ...
 ```
 
-###3. Discriminator D Pretrain
+### 3. Discriminator D Pretrain
 `cd ../D_pretrain/`
 
 ```
@@ -105,7 +105,7 @@ Epoch  5, d_step    41/ 4108; d: 0.55168
 ...
 ```
 
-###4. Adversarial Reinforcement Training
+### 4. Adversarial Reinforcement Training
 
 `cd ../reinforcement_train/`
 
